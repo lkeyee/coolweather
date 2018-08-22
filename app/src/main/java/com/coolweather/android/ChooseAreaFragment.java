@@ -1,9 +1,9 @@
 package com.coolweather.android;
 
 import android.app.ProgressDialog;
-import android.coolweather.com.android.R;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +54,8 @@ public class ChooseAreaFragment extends Fragment {
     private Province selectedProvince ; // 选中的省份
     private City selectedCity; //选中的城市
     private int currentLevel;  //当前选中的级别
+
+    private static final String TAG="ChooseAreaFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater , ViewGroup container,Bundle savedInstanceState){
@@ -112,6 +114,7 @@ public class ChooseAreaFragment extends Fragment {
         } else {
             String address="http://guolin.tech/api/china";
             queryFromServer(address,"province");
+            Log.i(TAG, "queryProvinces: ");
         }
     }
 
@@ -132,8 +135,7 @@ public class ChooseAreaFragment extends Fragment {
             currentLevel=LEVEL_CITY;
         } else{
             int provinceCode=selectedProvince.getProvinceCode();
-            String address="http://guolin.tech/api/china"+provinceCode;
-            queryFromServer(address,"city");
+            String address="http://guolin.tech/api/china/"+provinceCode;
         }
     }
 

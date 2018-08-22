@@ -1,6 +1,7 @@
 package com.coolweather.android.util;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,6 +12,8 @@ import com.coolweather.android.db.*;
  * Created by lkeye on 2018/8/22
  */
 public class Utility {
+
+    private static final String TAG="Utility";
     /**
      * 解析和处理服务器返回的省级数据
      */
@@ -39,6 +42,7 @@ public class Utility {
     public static boolean handleCityResponse(String response,int provinceId){
         if(!TextUtils.isEmpty(response)){
             try{
+                Log.i(TAG, "handleCityResponse: "+response);
                 JSONArray allCities =new JSONArray(response);
                 for(int i=0;i<allCities.length();i++){
                     JSONObject cityObject=allCities.getJSONObject(i);
